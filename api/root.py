@@ -1,9 +1,8 @@
-from django.middleware.csrf import get_token
+from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework.decorators import api_view
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.routers import APIRootView
-from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 class APIRoot(APIRootView):
@@ -18,5 +17,4 @@ class APIRoot(APIRootView):
 @ensure_csrf_cookie
 @api_view(["GET"])
 def get_csrf_token(request):
-    csrf_token = get_token(request)
-    return Response(data={'csrf_token': csrf_token})
+    return Response()
